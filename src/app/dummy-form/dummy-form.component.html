@@ -1,0 +1,15 @@
+<h5>Input</h5>
+<div class="form-group">
+  <app-maps-autocomplete 
+     [placeholder]="'Search for address'" 
+     [(ngModel)]="address"
+  ></app-maps-autocomplete>
+</div>
+<h5>Output</h5>
+<div class="form-group">
+  <app-reverse-geocode 
+    *ngIf="address.longitude && address.latitude" 
+    [longitude]="address.longitude" 
+    [latitude]="address.latitude"
+  ></app-reverse-geocode>
+</div>

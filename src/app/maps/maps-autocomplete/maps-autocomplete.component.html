@@ -1,0 +1,28 @@
+<div class="form-group" [hidden]="!showInput">
+  <div class="input-group">
+    <input 
+      type="text" 
+      class="form-control"
+      [ngClass]="inputClass"
+      [ngbTypeahead]="placesSearch"
+      [placeholder]="placeholder" 
+      [resultFormatter]="formatter" 
+      [inputFormatter]="formatter" 
+      [ngModel]="place_object" 
+      (selectItem)="getDetails($event)"
+      (blur)="blurCheck()">
+    <span class="input-group-btn">
+      <button (click)="setCurrentPosition()" class="btn btn-secondary" type="button"><i class="fa fa-crosshairs"></i>&nbsp;Current location</button>
+    </span>
+  </div>
+  <p class="form-text text-muted" *ngIf="locationDisabled">
+    Location searching has been disabled, please enable it if you want to search for current location.
+  </p>
+</div>
+<div class="embed-responsive embed-responsive-16by9" *ngIf="showMap">
+  <div class="embed-responsive-item">
+    <agm-map style="height:100%;" [latitude]="latitude" [mapDraggable]="false" [disableDefaultUI]="true" [disableDoubleClickZoom]="true" [keyboardShortcuts]="false" [zoomControl]="false" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [streetViewControl]="false">
+      <agm-marker *ngIf="formatted_address" [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    </agm-map>
+  </div>
+</div>
